@@ -1,5 +1,5 @@
 @extends('layout.master')
-@section('title','home')
+@section('title','dijual')
 @section('content')
 
 <div class="container">
@@ -39,12 +39,6 @@
             <div class="card-header">
               <div class="d-flex justify-content-between">
                 <h3 class="card-title">List Produk</h3>
-                <div class="row">
-                    <a href="{{route('dijual',['status'=>$status['status']])}}" class="btn col btn-sm btn-info me-3 text-white"><i class="fas fa-plus "></i>
-                        Bisa dijual</a>
-                        <a href="{{route('home-tambah')}}"  class="btn col btn-success pt-2">tambah</a>
-                </div>
-
               </div>
             </div>
             <!-- /.card-header -->

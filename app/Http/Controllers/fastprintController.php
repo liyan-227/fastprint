@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\kategori;
 use App\Models\produk;
+use App\Models\status;
 use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Request;
-
+use GuzzleHttp\Psr7\Request as Requestpsr7;
+use Illuminate\Http\Request;
 
 class fastprintController extends Controller
 {
@@ -16,29 +18,41 @@ class fastprintController extends Controller
      */
     public function index()
     {
-        $client = new Client();
-        $headers = [
-          'Authorization' => 'Basic Og==',
-          'Cookie' => 'ci_session=qev1tr4bg0f5j1tvq2kaf6vrseet6c9t'
-        ];
-        $options = [
-          'multipart' => [
-            [
-              'name' => 'password',
-              'contents' => 'e8b4e8708f96cd55eb04ff02004e7e3a'
-            ],
-            [
-              'name' => 'username',
-              'contents' => 'tesprogrammer081223C16'
-            ]
-        ]];
-        $request = new Request('POST', 'https://recruitment.fastprint.co.id/tes/api_tes_programmer', $headers);
-        $res = $client->sendAsync($request, $options)->wait();
-        $content = $res->getBody()->getContents();
-        $contentArray = json_decode($content,true);
-        $produk = $contentArray["data"];
-        // dd($produk);
-        return view('index',compact('produk'));
+        // $client = new Client();
+        // $headers = [
+        //   'Authorization' => 'Basic Og==',
+        //   'Cookie' => 'ci_session=qev1tr4bg0f5j1tvq2kaf6vrseet6c9t'
+        // ];
+        // $options = [
+        //   'multipart' => [
+        //     [
+        //       'name' => 'password',
+        //       'contents' => '349c77a5762af90d145944651bbb4f7e'
+        //     ],
+        //     [
+        //       'name' => 'username',
+        //       'contents' => 'tesprogrammer091223C08'
+        //     ]
+        // ]];
+        // $request = new Requestpsr7('POST', 'https://recruitment.fastprint.co.id/tes/api_tes_programmer', $headers);
+        // $res = $client->sendAsync($request, $options)->wait();
+        // $content = $res->getBody()->getContents();
+        // $contentArray = json_decode($content,true);
+        // $produk = $contentArray["data"];
+
+        // foreach($produk as $produks){
+        //     $post = produk::create([
+        //         'id'=>$produks['id_produk'],
+        //         'produk'=>$produks['nama_produk'],
+        //         'harga'=>$produks['harga'],
+        //         'kategori'=>$produks['kategori'],
+        //         'status'=>$produks['status'],
+        //     ]);
+        // }
+        $status = status::all()->first()->toArray();
+        $kategori = kategori::all()->toArray();
+        $produk = produk::all();
+        return view('index',compact('produk','status','kategori'))->with('no',1);
     }
 
     public function index_tambah()
@@ -66,39 +80,21 @@ class fastprintController extends Controller
      */
     public function store(Request $request)
     {
-        $client = new Client();
-        $headers = [
-          'Authorization' => 'Basic Og==',
-          'Cookie' => 'ci_session=qev1tr4bg0f5j1tvq2kaf6vrseet6c9t'
-        ];
-        $options = [
-          'multipart' => [
-            [
-              'name' => 'password',
-              'contents' => 'e8b4e8708f96cd55eb04ff02004e7e3a'
-            ],
-            [
-              'name' => 'username',
-              'contents' => 'tesprogrammer081223C15'
-            ]
-        ]];
-        $req = new Request('POST', 'https://recruitment.fastprint.co.id/tes/api_tes_programmer', $headers);
-        $res = $client->sendAsync($req, $options)->wait();
-        echo $res->getBody();
         $request->validate([
+            'id'=>'required|max:200',
             'produk'=>'required|max:200',
             'harga'=>'required|max:100',
             'kategori'=>'required|max:100',
             'status'=>'required|max:50'
         ]);
-
-        produk::create([
-            'produk'=>$request->nama_produk,
-            'harga'=>$request->harga,
-            'kategori'=>$request->kategori_id,
-            'status'=>$request->status_id
-        ]);
-        return redirect()->route('index')->with('mesagge', 'Produk berhasil ditambahkan');
+            produk::create([
+                'id'=>$request->id,
+                'produk'=>$request->produk,
+                'harga'=>$request->harga,
+                'kategori'=>$request->kategori,
+                'status'=>$request->status
+            ]);
+            return redirect('')->with('success','Produk berhasil ditambahkan');
     }
 
     /**
@@ -124,6 +120,13 @@ class fastprintController extends Controller
         return view('edit',compact('produk'));
     }
 
+    public function dijual($status)
+    {
+        $produk = produk::where($status);
+        dd($produk);
+        return view('dijual',compact('produk'));
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -144,8 +147,8 @@ class fastprintController extends Controller
      */
     public function destroy($id)
     {
-        $produk = produk::FindorFail($id);
+        $produk = produk::Find($id);
         $produk->delete();
-        return redirect()->route('index')->with('message','Produk berhasil dihapus');
+        return redirect('')->with('delete','Produk berhasil dihapus');
     }
 }

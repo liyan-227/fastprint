@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[fastprintController::class, 'index'])->name('home');
 Route::get('/tambah',[fastprintController::class, 'index_tambah'])->name('home-tambah');
+Route::get('/edit/{id}',[fastprintController::class, 'edit'])->name('edit');
+Route::get('/{status}',[fastprintController::class, 'dijual'])->name('dijual');
 Route::post('/',[fastprintController::class, 'store'])->name('tambah');
-Route::put('/',[fastprintController::class, 'edit'])->name('edit');
-Route::delete('/',[fastprintController::class,'destroy'])->name('hapus');
+Route::put('/',[fastprintController::class, 'edit']);
+Route::delete('/delete/{id}',[fastprintController::class,'destroy'])->name('hapus');

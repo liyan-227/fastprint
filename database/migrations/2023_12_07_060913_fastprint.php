@@ -14,11 +14,11 @@ class Fastprint extends Migration
     public function up()
     {
         Schema::create('produk', function (Blueprint $table) {
-            $table->id('id_produk');
-            $table->string('nama_produk');
+            $table->id('id');
+            $table->string('produk');
             $table->string('harga');
-            $table->integer('kategori_id');
-            $table->integer('status_id');
+            $table->string('kategori');
+            $table->string('status');
             $table->timestamps();
         });
     }

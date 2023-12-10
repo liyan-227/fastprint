@@ -17,7 +17,7 @@ class fastprintController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+        {
         // $client = new Client();
         // $headers = [
         //   'Authorization' => 'Basic Og==',
@@ -27,11 +27,11 @@ class fastprintController extends Controller
         //   'multipart' => [
         //     [
         //       'name' => 'password',
-        //       'contents' => '349c77a5762af90d145944651bbb4f7e'
+        //       'contents' => '190c4e8cf8ab3686cbf20fdc7cc6e836'
         //     ],
         //     [
         //       'name' => 'username',
-        //       'contents' => 'tesprogrammer091223C08'
+        //       'contents' => 'tesprogrammer101223C17'
         //     ]
         // ]];
         // $request = new Requestpsr7('POST', 'https://recruitment.fastprint.co.id/tes/api_tes_programmer', $headers);
@@ -41,7 +41,7 @@ class fastprintController extends Controller
         // $produk = $contentArray["data"];
 
         // foreach($produk as $produks){
-        //     $post = produk::create([
+        //     produk::create([
         //         'id'=>$produks['id_produk'],
         //         'produk'=>$produks['nama_produk'],
         //         'harga'=>$produks['harga'],

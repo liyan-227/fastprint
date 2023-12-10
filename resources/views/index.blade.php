@@ -18,6 +18,12 @@
           </div>
         </div>
       </nav>
+      @if ($message = Session::get('update'))
+      <div id="alert" class="alert alert-success" role="alert">
+       <strong>{{$message}}</strong>
+      </div>
+      <meta http-equiv=refresh content=2; url='{{route('home')}}'>
+      @endif
       @if ($message = Session::get('success'))
       <div id="alert" class="alert alert-success" role="alert">
        <strong>{{$message}}</strong>
@@ -39,6 +45,11 @@
             <div class="card-header">
               <div class="d-flex justify-content-between">
                 <h3 class="card-title">List Produk</h3>
+                <form class="d-flex" action="{{route('cari')}}" method="GET">
+                    <input class="form-control me-2" type="search" name="cari" placeholder="cari produk ...."  aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Pencarian</button>
+                  </form>
+
                 <div class="row">
                     <a href="{{route('dijual',['status'=>$status['status']])}}" class="btn col btn-sm btn-info me-3 text-white"><i class="fas fa-plus "></i>
                         Bisa dijual</a>

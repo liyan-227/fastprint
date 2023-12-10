@@ -67,9 +67,13 @@ class fastprintController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function cari(Request $request)
     {
-        //
+        $status = status::all()->first()->toArray();
+        $kategori = kategori::all()->toArray();
+        $produk = produk::where('produk','like',"%".$request->cari."%")->get();
+        return view('index',compact('produk','status','kategori'))->with('no',1);
+
     }
 
     /**
@@ -120,11 +124,13 @@ class fastprintController extends Controller
         return view('edit',compact('produk'));
     }
 
-    public function dijual($status)
+
+
+
+    public function dijual(Request $request,$status)
     {
-        $produk = produk::where($status);
-        dd($produk);
-        return view('dijual',compact('produk'));
+        $produk = produk::where('status',$status)->get();
+        return view('dijual',compact('produk'))->with('no',1);
     }
 
     /**
@@ -136,7 +142,23 @@ class fastprintController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $produk = produk::FindorFail($id);
+
+        $request->validate([
+            'id'=>'required|max:200',
+            'produk'=>'required|max:200',
+            'harga'=>'required|max:100',
+            'kategori'=>'required|max:100',
+            'status'=>'required|max:50'
+        ]);
+            $produk->Update([
+                'id'=>$request->id,
+                'produk'=>$request->produk,
+                'harga'=>$request->harga,
+                'kategori'=>$request->kategori,
+                'status'=>$request->status
+            ]);
+            return redirect('')->with('update','Produk berhasil diperbarui');
     }
 
     /**

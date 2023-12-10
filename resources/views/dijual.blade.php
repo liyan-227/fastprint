@@ -38,7 +38,7 @@
           <div class="card">
             <div class="card-header">
               <div class="d-flex justify-content-between">
-                <h3 class="card-title">List Produk</h3>
+                <h3 class="card-title">List Produk yang bisa dijual</h3>
               </div>
             </div>
             <!-- /.card-header -->

@@ -71,19 +71,44 @@
                         <div class="col-6 mt-3">
                             <div class="list-group">
                                 <label for="title">status</label>
-                                <input  onclick="btntersedia()" id="tersedia" class="btn list-group-item list-group-item-action" name="status" value="tersedia">
-                                <input  onclick="tidaktersedia()" id="tidak_tersedia" class="btn list-group-item list-group-item-action" name="status" value="tidak tersedia">
+                                <div class="form-check">
+                                    <input onclick="btntersedia()" class="form-check-input " type="radio"  id="flexRadioDefault1" name="status" value="bisa dijual" >
+                                    <input id="tersedia" class="btn list-group-item list-group-item-action"  value="bisa dijual">
+                                  </div>
+                                  <div class="form-check">
+                                    <input onclick="tidaktersedia()" class="form-check-input " type="radio" id="flexRadioDefault2" name="status" value="tidak bisa dijual">
+                                    <input   id="tidak_tersedia" class="btn list-group-item list-group-item-action"  value="tidak bisa dijual">
+                                </div>
                             </div>
                             </div>
                             <div class="col-6">
                                 <label for="title">kategori</label>
-                                    <input onclick="QUEENLY()" id="queenly" class="btn list-group-item list-group-item-action" name="kategori" value="L QUEENLY" value="L QUEENLY" name="kategori">
-                                    <input onclick="AKSESORIS()" id="aksesoris" class="btn list-group-item list-group-item-action" name="kategori" value="L MTH AKSESORIS (IM)" value="L MTH AKSESORIS (IM)" name="kategori">
-                                    <input onclick="TABUNG()" id="tabung" class="btn list-group-item list-group-item-action" name="kategori" value="L MTH TABUNG (LK)" value="L MTH TABUNG (LK)" name="kategori">
-                                    <input onclick="SPAREPART()" id="sparepart"  class="btn list-group-item list-group-item-action" name="kategori" value="SP MTH SPAREPART (LK)" value="SP MTH SPAREPART (LK)" name="kategori">
-                                    <input onclick="TINTA()" id="tinta" class="btn list-group-item list-group-item-action" name="kategori" value="CI MTH TINTA LAIN (IM)" value="CI MTH TINTA LAIN (IM)" name="kategori">
-                                    <input onclick="STEMPEL()" id="stempel" class="btn list-group-item list-group-item-action" name="kategori" value="S MTH STEMPEL (IM)" value="S MTH STEMPEL (IM)" name="kategori">
+                                <div class="form-check">
+                                    <input onclick="QUEENLY()" class="form-check-input " type="radio"  id="flexRadioDefault1" value="L QUEENLY" name="kategori">
+                                    <input  id="queenly" class="btn list-group-item list-group-item-action"value="L QUEENLY" >
+                                  </div>
 
+                                    <div class="form-check">
+                                        <input onclick="AKSESORIS()" class="form-check-input " type="radio"  id="flexRadioDefault1" value="L MTH AKSESORIS (IM)" name="kategori">
+                                        <input  id="aksesoris" class="btn list-group-item list-group-item-action" value="L MTH AKSESORIS (IM)">
+                                      </div>
+
+                                    <div class="form-check">
+                                        <input onclick="TABUNG()" class="form-check-input " type="radio"  id="flexRadioDefault1"  name="kategori" value="L MTH TABUNG (LK)">
+                                        <input  id="tabung" class="btn list-group-item list-group-item-action" value="L MTH TABUNG (LK)" >
+                                      </div>
+                                    <div class="form-check">
+                                        <input onclick="SPAREPART()" class="form-check-input " type="radio"  id="flexRadioDefault1" value="SP MTH SPAREPART (LK)" name="kategori">
+                                        <input  id="sparepart"  class="btn list-group-item list-group-item-action" value="SP MTH SPAREPART (LK)" >
+                                      </div>
+                                    <div class="form-check">
+                                        <input onclick="TINTA()" class="form-check-input " type="radio"  id="flexRadioDefault1" value="CI MTH TINTA LAIN (IM)" name="kategori">
+                                        <input  id="tinta" class="btn list-group-item list-group-item-action" value="CI MTH TINTA LAIN (IM)">
+                                      </div>
+                                    <div class="form-check">
+                                        <input onclick="STEMPEL()" class="form-check-input " type="radio"  id="flexRadioDefault1" value="S MTH STEMPEL (IM)" name="kategori">
+                                        <input  id="stempel" class="btn list-group-item list-group-item-action" value="S MTH STEMPEL (IM)">
+                                      </div>
                             </div>
                 </div>
 

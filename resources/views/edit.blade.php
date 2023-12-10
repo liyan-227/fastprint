@@ -39,18 +39,18 @@
               <h3 class="card-title">Edit produk</h3>
             </div>
             <!-- /.card-header -->
-            <form action="{{ route('tambah') }}" method="POST" enctype="multipart/form-data">
-              @CSRF
+            <form action="{{ route('update',['id'=>$produk->id]) }}" method="POST" enctype="multipart/form-data">
+              @csrf
+              @method('PUT')
               <div class="card-body">
                 <div class="row">
                   <div class="col-6">
                     <div class="form-group">
                       <label for="title">produk</label>
-                      <input type="text" name="nama_produk" class="form-control @error('nama_produk') is-invalid @enderror" value="{{$produk->produk}}">
-                      <small class="text-danger">@error('nama_produk') {{$message}} @enderror</small>
+                      <input type="text" name="produk" class="form-control @error('produk') is-invalid @enderror" value="{{$produk->produk}}">
+                      <small class="text-danger">@error('produk') {{$message}} @enderror</small>
                     </div>
                   </div>
-
                 <div class="col-6">
                     <div class="form-group">
                       <label for="title">harga</label>
@@ -62,27 +62,59 @@
 
                 <div class="row">
                     <div class="col-6 mt-3">
-                        <div class="list
-                            <label for="title">kategori</label>
-                                <input onclick="QUEENLY()" id="queenly" class="btn list-group-item list-group-item-action" name="kategori" value="L QUEENLY" value="L QUEENLY" name="kategori">
-                                <input onclick="AKSESORIS()" id="aksesoris" class="btn list-group-item list-group-item-action" name="kategori" value="L MTH AKSESORIS (IM)" value="L MTH AKSESORIS (IM)" name="kategori">
-                                <input onclick="TABUNG()" id="tabung" class="btn list-group-item list-group-item-action" name="kategori" value="L MTH TABUNG (LK)" value="L MTH TABUNG (LK)" name="kategori">
-                                <input onclick="SPAREPART()" id="sparepart"  class="btn list-group-item list-group-item-action" name="kategori" value="SP MTH SPAREPART (LK)" value="SP MTH SPAREPART (LK)" name="kategori">
-                                <input onclick="TINTA()" id="tinta" class="btn list-group-item list-group-item-action" name="kategori" value="CI MTH TINTA LAIN (IM)" value="CI MTH TINTA LAIN (IM)" name="kategori">
-                                <input onclick="STEMPEL()" id="stempel" class="btn list-group-item list-group-item-action" name="kategori" value="S MTH STEMPEL (IM)" value="S MTH STEMPEL (IM)" name="kategori">
+                        <div class="form-group">
+                            <label for="title">id</label>
+                            <input type="number" name="id" class="form-control @error('id') is-invalid @enderror" value="{{$produk->id}}">
+                            <small class="text-danger">@error('id') {{$message}} @enderror</small>
+                          </div>
 
-                        </div>
                         </div>
                         <div class="col-6 mt-3">
                             <div class="list-group">
                                 <label for="title">status</label>
-                                <input  onclick="btntersedia()" id="tersedia" class="btn list-group-item list-group-item-action " value="tersedia">
-                                <input  onclick="tidaktersedia()" id="tidak_tersedia" class="btn list-group-item list-group-item-action " value="tidak tersedia">
+                                <div class="form-check">
+                                    <input  id="cektersedia" onclick="btntersedia()" class="form-check-input " type="radio"  id="flexRadioDefault1" name="status" value="bisa dijual" >
+                                    <input id="tersedia" class="btn list-group-item list-group-item-action"  value="bisa dijual">
+                                  </div>
+                                  <div class="form-check">
+                                    <input id="cektidak_tersedia" onclick="tidaktersedia()" class="form-check-input " type="radio" id="flexRadioDefault2" name="status" value="tidak bisa dijual">
+                                    <input   id="tidak_tersedia" class="btn list-group-item list-group-item-action"  value="tidak bisa dijual">
+                                </div>
                             </div>
+                            </div>
+                            <div class="col-6">
+                                <label for="title">kategori</label>
+                                <div class="form-check">
+                                    <input onclick="QUEENLY()" id="cekqueenly" class="form-check-input " type="radio"  value="L QUEENLY" name="kategori">
+                                    <input  id="queenly" class="btn list-group-item list-group-item-action"value="L QUEENLY" >
+                                  </div>
+
+                                    <div class="form-check">
+                                        <input onclick="AKSESORIS()" id="cekaksesoris" class="form-check-input " type="radio"  id="flexRadioDefault1" value="L MTH AKSESORIS (IM)" name="kategori">
+                                        <input  id="aksesoris" class="btn list-group-item list-group-item-action" value="L MTH AKSESORIS (IM)">
+                                      </div>
+
+                                    <div class="form-check">
+                                        <input onclick="TABUNG()" id="cektabung" class="form-check-input " type="radio"  id="flexRadioDefault1"  name="kategori" value="L MTH TABUNG (LK)">
+                                        <input  id="tabung" class="btn list-group-item list-group-item-action" value="L MTH TABUNG (LK)" >
+                                      </div>
+                                    <div class="form-check">
+                                        <input onclick="SPAREPART()" id="ceksparepart" class="form-check-input " type="radio"  id="flexRadioDefault1" value="SP MTH SPAREPART (LK)" name="kategori">
+                                        <input  id="sparepart"  class="btn list-group-item list-group-item-action" value="SP MTH SPAREPART (LK)" >
+                                      </div>
+                                    <div class="form-check">
+                                        <input onclick="TINTA()" id="cektinta" class="form-check-input " type="radio"  id="flexRadioDefault1" value="CI MTH TINTA LAIN (IM)" name="kategori">
+                                        <input  id="tinta" class="btn list-group-item list-group-item-action" value="CI MTH TINTA LAIN (IM)">
+                                      </div>
+                                    <div class="form-check">
+                                        <input onclick="STEMPEL()" id="cekstempel" class="form-check-input " type="radio"  id="flexRadioDefault1" value="S MTH STEMPEL (IM)" name="kategori">
+                                        <input  id="stempel" class="btn list-group-item list-group-item-action" value="S MTH STEMPEL (IM)">
+                                      </div>
                             </div>
                 </div>
 
                   </div>
+                </div>
                 </div>
               </div>
               <!-- /.row -->
@@ -91,11 +123,7 @@
                 <div class="d-flex justify-content-end">
                   <a href="{{route('home')}}" class="m-1 btn btn-outline-danger">Kembali</a>
                   <button type="submit" class="m-1 btn btn-success">Perbarui</button>
-                  @if(session('berhasil'))
-                  <script>
-                    alert("data berhasil ditambahkan");
-                  </script>
-                  @endif<!-- /.container-fluid -->
+
                 </div>
               </div>
             </form>
@@ -107,12 +135,20 @@
 <script>
     const ada = document.querySelector('#tersedia');
     const tidak_ada = document.querySelector('#tidak_tersedia');
+    const cekada = document.querySelector('#cektersedia');
+    const cektidak_ada = document.querySelector('#cektidak_tersedia');
     const queenly = document.querySelector('#queenly');
     const aksesoris = document.querySelector('#aksesoris');
     const tabung = document.querySelector('#tabung');
     const sparepart = document.querySelector('#sparepart');
     const tinta = document.querySelector('#tinta');
     const stempel = document.querySelector('#stempel');
+    const cekqueenly = document.querySelector('#cekqueenly');
+    const cekaksesoris = document.querySelector('#cekaksesoris');
+    const cektabung = document.querySelector('#cektabung');
+    const ceksparepart = document.querySelector('#ceksparepart');
+    const cektinta = document.querySelector('#cektinta');
+    const cekstempel = document.querySelector('#cekstempel');
 
 
 
@@ -176,8 +212,30 @@
 
     if('{{$produk->status}}'=="bisa dijual"){
         ada.classList.add('active');
+        cekada.setAttribute('checked',true);
     }else if('{{$produk->status}}'=="tidak bisa dijual"){
         tidak_ada.classList.add('active');
+        cektidak_ada.setAttribute('checked',true);
+    }
+
+    if('{{$produk->kategori}}'=="L QUEENLY"){
+        queenly.classList.add('active');
+        cekqueenly.setAttribute('checked',true);
+    }else if('{{$produk->kategori}}'=="L MTH AKSESORIS (IM)"){
+        aksesoris.classList.add('active');
+        cekaksesoris.setAttribute('checked',true);
+    }else if('{{$produk->kategori}}'=="L MTH TABUNG (LK)"){
+        tabung.classList.add('active');
+        cektabung.setAttribute('checked',true);
+    }else if('{{$produk->kategori}}'=="SP MTH SPAREPART (LK)"){
+        sparepart.classList.add('active');
+        ceksparepart.setAttribute('checked',true);
+    }else if('{{$produk->kategori}}'=="CI MTH TINTA LAIN (IM)"){
+        tinta.classList.add('active');
+        cektinta.setAttribute('checked',true);
+    }else if('{{$produk->kategori}}'=="S MTH STEMPEL (IM)"){
+        stempel.classList.add('active');
+        cekstempel.setAttribute('checked',true);
     }
     </script>
 @endsection

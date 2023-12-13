@@ -27,11 +27,11 @@ class fastprintController extends Controller
         //   'multipart' => [
         //     [
         //       'name' => 'password',
-        //       'contents' => '190c4e8cf8ab3686cbf20fdc7cc6e836'
+        //       'contents' => '8b70c604fcde3c84c1a4a22f1dbe3df2'
         //     ],
         //     [
         //       'name' => 'username',
-        //       'contents' => 'tesprogrammer101223C17'
+        //       'contents' => 'tesprogrammer131223C13'
         //     ]
         // ]];
         // $request = new Requestpsr7('POST', 'https://recruitment.fastprint.co.id/tes/api_tes_programmer', $headers);
@@ -41,18 +41,63 @@ class fastprintController extends Controller
         // $produk = $contentArray["data"];
 
         // foreach($produk as $produks){
+        //     if ($produks['kategori']=="L QUEENLY" && $produks['status']=="bisa dijual") {
+        //         $produks['kategori']=1;
+        //         $produks['status']=1;
+        //     }elseif($produks['kategori']=="L QUEENLY" && $produks['status']=="tidak bisa dijual"){
+        //         $produks['kategori']=1;
+        //         $produks['status']=2;
+        //     }elseif($produks['kategori']=="L MTH AKSESORIS (IM)" && $produks['status']=="bisa dijual"){
+        //         $produks['kategori']=2;
+        //         $produks['status']=1;
+        //     }elseif($produks['kategori']=="L MTH AKSESORIS (IM)" && $produks['status']=="tidak bisa dijual"){
+        //         $produks['kategori']=2;
+        //         $produks['status']=2;
+        //     }elseif($produks['kategori']=="L MTH TABUNG (LK)" && $produks['status']=="bisa dijual"){
+        //         $produks['kategori']=3;
+        //         $produks['status']=1;
+        //     }elseif($produks['kategori']=="L MTH TABUNG (LK)" && $produks['status']=="tidak bisa dijual"){
+        //         $produks['kategori']=3;
+        //         $produks['status']=2;
+        //     }elseif($produks['kategori']=="SP MTH SPAREPART (LK)" && $produks['status']=="bisa dijual"){
+        //         $produks['kategori']=4;
+        //         $produks['status']=1;
+        //     }elseif($produks['kategori']=="SP MTH SPAREPART (LK)" && $produks['status']=="tidak bisa dijual"){
+        //         $produks['kategori']=4;
+        //         $produks['status']=2;
+        //     }elseif($produks['kategori']=="CI MTH TINTA LAIN (IM)" && $produks['status']=="bisa dijual"){
+        //         $produks['kategori']=5;
+        //         $produks['status']=1;
+        //     }elseif($produks['kategori']=="CI MTH TINTA LAIN (IM)" && $produks['status']=="tidak bisa dijual"){
+        //         $produks['kategori']=5;
+        //         $produks['status']=2;
+        //     }elseif($produks['kategori']=="S MTH STEMPEL (IM)" && $produks['status']=="bisa dijual"){
+        //         $produks['kategori']=6;
+        //         $produks['status']=1;
+        //     }elseif($produks['kategori']=="S MTH STEMPEL (IM)" && $produks['status']=="tidak bisa dijual"){
+        //         $produks['kategori']=6;
+        //         $produks['status']=2;
+        //     }elseif($produks['kategori']=="L MTH AKSESORIS (LK)" && $produks['status']=="bisa dijual"){
+        //         $produks['kategori']=7;
+        //         $produks['status']=1;
+        //     }elseif($produks['kategori']=="L MTH AKSESORIS (LK)" && $produks['status']=="tidak bisa dijual"){
+        //         $produks['kategori']=7;
+        //         $produks['status']=2;
+        //     }
+
         //     produk::create([
         //         'id'=>$produks['id_produk'],
         //         'produk'=>$produks['nama_produk'],
         //         'harga'=>$produks['harga'],
-        //         'kategori'=>$produks['kategori'],
-        //         'status'=>$produks['status'],
+        //         'kategori_id'=>$produks['kategori'],
+        //         'status_id'=>$produks['status'],
         //     ]);
         // }
         $status = status::all()->first()->toArray();
         $kategori = kategori::all()->toArray();
         $produk = produk::all();
-        return view('index',compact('produk','status','kategori'))->with('no',1);
+        // dd($produk);
+      return view('index',compact('produk','status','kategori'))->with('no',1);
     }
 
     public function index_tambah()

@@ -13,7 +13,14 @@ class produk extends Model
         'id',
         'produk',
         'harga',
-        'kategori',
-        'status'
+        'kategori_id',
+        'status_id'
     ];
+
+    public function kategori(){
+        return $this->belongsTo(kategori::class);
+    }
+    public function status(){
+        return $this->belongsTo(status::class);
+    }
 }

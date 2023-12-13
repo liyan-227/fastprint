@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Fastprint extends Migration
+class Produk extends Migration
 {
     /**
      * Run the migrations.
@@ -17,10 +17,11 @@ class Fastprint extends Migration
             $table->id('id');
             $table->string('produk');
             $table->string('harga');
-            $table->string('kategori');
-            $table->string('status');
+            $table->foreignId('kategori_id')->index()->constrained('kategori');
+            $table->foreignId('status_id')->index()->constrained('status');
             $table->timestamps();
-        });
+
+            });
     }
 
     /**

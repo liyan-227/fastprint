@@ -12,4 +12,7 @@ class status extends Model
     protected $fillable = [
         'status',
     ];
+    public function produk(){
+        return $this->hasMany(produk::class);
+    }
 }

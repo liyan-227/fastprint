@@ -18,6 +18,8 @@ class Status extends Migration
             $table->string('status');
             $table->timestamps();
         });
+
+
     }
 
     /**

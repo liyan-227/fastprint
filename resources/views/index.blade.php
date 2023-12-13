@@ -79,8 +79,8 @@
                     <td>{{$produks['id']}}</td>
                     <td>{{$produks['produk']}}</td>
                     <td>{{$produks['harga']}}</td>
-                    <td>{{$produks['kategori']}}</td>
-                    <td>{{$produks['status']}}</td>
+                    <td>{{$produks['kategori']->kategori}}</td>
+                    <td>{{$produks['status']->status}}</td>
                     <td>
                       <a href=" {{route('edit',["id"=> $produks['id']])}}" class="btn btn-warning float-left m-1">Edit</a>
                       <form action="{{route('hapus',["id"=>$produks['id']])}}" method="POST">

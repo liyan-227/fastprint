@@ -102,7 +102,9 @@ class fastprintController extends Controller
 
     public function index_tambah()
     {
-        return view('tambah');
+        $kategori = kategori::all();
+        $status = status::all();
+        return view('tambah', compact('status','kategori'));
     }
 
 
@@ -164,9 +166,10 @@ class fastprintController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
+    {   $kategori = kategori::all();
+        $status = status::all();
         $produk = produk::FindorFail($id);
-        return view('edit',compact('produk'));
+        return view('edit',compact('produk','status','kategori'));
     }
 
 
